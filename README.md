@@ -1,5 +1,5 @@
 Dyet
-====
+----
 
 Pseudo-code to Piet source-code transformation.
 For lulz and gloriez.
@@ -7,15 +7,12 @@ For lulz and gloriez.
 
 
 Usage
-=====
+-----
 
 Running `./dyet check/test.dyp` will create an 'out.ppm' file which is the
 corresponding Piet code.
 
 
-
-Internals
-=========
 
 Pseudo-code specification
 -------------------------
