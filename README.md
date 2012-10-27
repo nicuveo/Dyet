@@ -8,6 +8,9 @@ This is barely a 0.01 version: it generates boring linear images and handle no
 fun stuff like *if* or *while*. I have plans to make it better, but any help
 will be appreciated. :)
 
+(See the wiki for monologues and ascii-art about how I plan to implement the
+next steps of Dyet.)
+
 
 
 Usage
