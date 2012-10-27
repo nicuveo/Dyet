@@ -4,6 +4,10 @@ Dyet
 Pseudo-code to Piet source-code transformation.
 For lulz and gloriez.
 
+This is barely a 0.01 version: it generates boring linear images and handle no
+fun stuff like *if* or *while*. I have plans to make it better, but any help
+will be appreciated. :)
+
 
 
 Usage
