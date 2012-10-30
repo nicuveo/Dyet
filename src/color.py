@@ -18,24 +18,45 @@ class Color:
 
 
 class Colors:
-    R0 = Color(0, 0, (0xFF, 0xC0, 0xC0))
-    R1 = Color(0, 1, (0xFF,    0,    0))
-    R2 = Color(0, 2, (0xC0,    0,    0))
-    Y0 = Color(1, 0, (0xFF, 0xFF, 0xC0))
-    Y1 = Color(1, 1, (0xFF, 0xFF,    0))
-    Y2 = Color(1, 2, (0xC0, 0xC0,    0))
-    G0 = Color(2, 0, (0xC0, 0xFF, 0xC0))
-    G1 = Color(2, 1, (   0, 0xFF,    0))
-    G2 = Color(2, 2, (   0, 0xC0,    0))
-    C0 = Color(3, 0, (0xC0, 0xFF, 0xFF))
-    C1 = Color(3, 1, (   0, 0xFF, 0xFF))
-    C2 = Color(3, 2, (   0, 0xC0, 0xC0))
-    B0 = Color(4, 0, (0xC0, 0xC0, 0xFF))
-    B1 = Color(4, 1, (   0,    0, 0xFF))
-    B2 = Color(4, 2, (   0,    0, 0xC0))
-    M0 = Color(5, 0, (0xFF, 0xC0, 0xFF))
-    M1 = Color(5, 1, (0xFF,    0, 0xFF))
-    M2 = Color(5, 2, (0xC0,    0, 0xC0))
+    RGB_R0 = (0xFF, 0xC0, 0xC0)
+    RGB_R1 = (0xFF,    0,    0)
+    RGB_R2 = (0xC0,    0,    0)
+    RGB_Y0 = (0xFF, 0xFF, 0xC0)
+    RGB_Y1 = (0xFF, 0xFF,    0)
+    RGB_Y2 = (0xC0, 0xC0,    0)
+    RGB_G0 = (0xC0, 0xFF, 0xC0)
+    RGB_G1 = (   0, 0xFF,    0)
+    RGB_G2 = (   0, 0xC0,    0)
+    RGB_C0 = (0xC0, 0xFF, 0xFF)
+    RGB_C1 = (   0, 0xFF, 0xFF)
+    RGB_C2 = (   0, 0xC0, 0xC0)
+    RGB_B0 = (0xC0, 0xC0, 0xFF)
+    RGB_B1 = (   0,    0, 0xFF)
+    RGB_B2 = (   0,    0, 0xC0)
+    RGB_M0 = (0xFF, 0xC0, 0xFF)
+    RGB_M1 = (0xFF,    0, 0xFF)
+    RGB_M2 = (0xC0,    0, 0xC0)
+    RGB_B  = (   0,    0,    0)
+    RGB_W  = (0xFF, 0xFF, 0xFF)
+
+    R0 = Color(0, 0, RGB_R0)
+    R1 = Color(0, 1, RGB_R1)
+    R2 = Color(0, 2, RGB_R2)
+    Y0 = Color(1, 0, RGB_Y0)
+    Y1 = Color(1, 1, RGB_Y1)
+    Y2 = Color(1, 2, RGB_Y2)
+    G0 = Color(2, 0, RGB_G0)
+    G1 = Color(2, 1, RGB_G1)
+    G2 = Color(2, 2, RGB_G2)
+    C0 = Color(3, 0, RGB_C0)
+    C1 = Color(3, 1, RGB_C1)
+    C2 = Color(3, 2, RGB_C2)
+    B0 = Color(4, 0, RGB_B0)
+    B1 = Color(4, 1, RGB_B1)
+    B2 = Color(4, 2, RGB_B2)
+    M0 = Color(5, 0, RGB_M0)
+    M1 = Color(5, 1, RGB_M1)
+    M2 = Color(5, 2, RGB_M2)
 
     list = []
     map = {}
@@ -54,6 +75,16 @@ def command_next(color, command):
 
 def command_prev(color, command):
     return prev(color, command.hue_delta(), command.lightness_delta())
+
+def command_list_next(color, commands):
+    for command in commands:
+        color = command_next(color, command)
+    return color
+
+def command_list_prev(color, commands):
+    for command in commands:
+        color = command_prev(color, command)
+    return color
 
 
 
@@ -77,7 +108,7 @@ if __name__ == "__main__":
 
     class ColorsTest(unittest.TestCase):
         def test_size(self):
-            ref = [x for x in dir(Colors) if not x.startswith("__")]
+            ref = [x for x in dir(Colors) if not x.startswith("__") and not x.startswith("RGB_")]
             self.assertEqual(len(ref) - 2, len(Colors.list))
             self.assertEqual(len(ref) - 2, len(Colors.map))
 

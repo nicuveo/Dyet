@@ -4,7 +4,7 @@
 
 
 
-########## Declarations ##########
+########## Imports ##########
 
 import sys
 import parser
@@ -14,77 +14,59 @@ from tools.graph import Graph
 from tools.image import Image
 from color import Colors
 from command import Commands
+from block import *
 
 
 
 ########## Declarations ##########
 
-class Node:
-    def __init__(self, size):
-        self.size = size
-        self.color = None
+def render(block_list):
+    size = block_list.minimum_size()
+    return block_list.render(size[0], size[1]).to_ppm_string()
 
-class Edge:
-    def __init__(self, cmd):
-        self.cmd = cmd
+def close(block_list):
+    if block_list.blocks and block_list.blocks[-1].command != Commands.NOOP:
+        block_list.blocks.append(NoopBlock())
 
 
 def main(args):
     input_file = args[1]
+    resulting_prog = BlockList()
+    scope = [resulting_prog]
+    container_scope = []
+
     with open(input_file, 'r') as f:
-        g = Graph()
-        last_node = Node(0)
-        start_node = last_node
-        g.add_node(last_node)
-
         for argv in parser.parse(f.read()):
-            cmd = Commands.map[argv[0].lower()]
-            new_node = Node(0)
+            command = argv[0].lower()
 
-            if cmd == Commands.PUSH:
-                last_node.size = int(argv[1])
+            if command == "if":
+                if_block = IfBlock()
+                scope[-1].blocks.append(if_block)
+                container_scope.append(if_block)
+                scope.append(if_block.if_block)
+            elif command == "while":
+                while_block = WhileBlock()
+                scope[-1].blocks.append(while_block)
+                container_scope.append(while_block)
+                scope.append(while_block.while_block)
+            elif command == "else":
+                if_block = container_scope[-1]
+                close(scope.pop())
+                scope.append(if_block.else_block)
+            elif command == "end":
+                close(scope.pop())
+                container_scope.pop()
+            elif command in Commands.map.keys() and not command in [Commands.POINTER, Commands.SWITCH, Commands.NOOP]:
+                cmd = Commands.map[command]
+                if len(argv) > 1:
+                    scope[-1].blocks.append(LeafBlock(cmd, int(argv[1])))
+                else:
+                    scope[-1].blocks.append(LeafBlock(cmd))
 
-            g.add_node(new_node)
-            g.add_edge(last_node, new_node, cmd)
-            last_node = new_node
-
-        start_node.color = Colors.R0
-        seen_nodes = [start_node]
-        current_edges = g.out_edges(start_node)
-
-        while current_edges:
-            (source, target, cmd) = current_edges[0]
-            current_edges.pop(0)
-            target.color = color.command_next(source.color, cmd)
-            for edge in g.out_edges(target):
-                if not edge[1] in seen_nodes:
-                    seen_nodes.append(edge[1])
-                    current_edges.append(edge)
-
-        width = len(g.nodes()) + 1
-        height = max(3, max(n.size + 2 for n in g.nodes()))
-        res = Image(width, height, (0, 0, 0))
-
-        node = start_node
-        column = 1
-        while True:
-            for row in range(1, max(2, 1 + node.size)):
-                res.pixel_set(column, row, node.color.rgb())
-            column += 1
-            out_edges = g.out_edges(node)
-            next_node = out_edges[0][1] if out_edges else None
-            if not next_node:
-                break
-            node = next_node
-
-        c1 = color.command_prev(start_node.color, Commands.POP)
-        res.pixel_set(0, 0, c1.rgb())
-        res.pixel_set(0, 1, c1.rgb())
-        for row in range(0, height):
-            res.pixel_set(width - 1, row, node.color.rgb())
-
-        with open("out.ppm", 'w') as out:
-            out.write(res.to_ppm_string())
+        assert(len(scope) == 1)
+        resulting_prog.blocks.append(EndBlock())
+        resulting_prog.colorize(Colors.R0)
+        print(render(resulting_prog))
 
 
 

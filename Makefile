@@ -7,6 +7,7 @@ SRC =			\
 ./src/command.py	\
 ./src/parser.py		\
 ./src/color.py		\
+./src/block.py		\
 
 
 all: $(SRC)

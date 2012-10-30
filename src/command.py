@@ -18,6 +18,7 @@ class Command:
 
 
 class Commands:
+    NOOP      = Command("noop",      0, 0)
     PUSH      = Command("push",      0, 1)
     POP       = Command("pop",       0, 2)
     ADD       = Command("add",       1, 0)
@@ -43,7 +44,8 @@ class Commands:
 
 ########## Static init ##########
 
-for cmd in [Commands.PUSH,
+for cmd in [Commands.NOOP,
+            Commands.PUSH,
             Commands.POP,
             Commands.ADD,
             Commands.SUBSTRACT,

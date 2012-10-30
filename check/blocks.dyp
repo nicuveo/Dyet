@@ -1,0 +1,46 @@
+push 5
+
+duplicate
+not
+while
+  pop
+  duplicate
+  out_int
+  push 10
+  out_char
+  push 1
+  substract
+  duplicate
+  not
+end
+
+push 42
+duplicate
+duplicate
+duplicate
+duplicate
+duplicate
+out_char
+out_char
+out_char
+
+push 32
+duplicate
+out_char
+
+push 66
+out_char
+push 79
+out_char
+push 85
+out_char
+push 77
+out_char
+
+out_char
+out_char
+out_char
+out_char
+
+push 10
+out_char

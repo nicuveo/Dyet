@@ -1,0 +1,111 @@
+push 42
+
+duplicate
+not
+while
+  pop
+  duplicate
+  push 43
+  push 2
+  push 1
+  roll
+  substract
+
+  duplicate
+  duplicate
+
+  push 3
+  mod
+  not
+  push 3
+  multiply
+
+  push 2
+  push 1
+  roll
+
+  push 5
+  mod
+  not
+  push 5
+  multiply
+
+  add
+
+  duplicate
+  push 3
+  substract
+  not
+  if
+    push 122
+    duplicate
+    push 105
+    push 70
+    out_char
+    out_char
+    out_char
+    out_char
+    pop
+  else
+    pop
+    duplicate
+    push 5
+    substract
+    not
+    if
+      push 122
+      duplicate
+      push 117
+      push 66
+      out_char
+      out_char
+      out_char
+      out_char
+      pop
+    else
+      pop
+      duplicate
+      push 15
+      substract
+      not
+      if
+        push 122
+        duplicate
+        push 117
+        push 66
+        push 122
+        duplicate
+        push 105
+        push 70
+        out_char
+        out_char
+        out_char
+        out_char
+        out_char
+        out_char
+        out_char
+        out_char
+        pop
+      else
+        pop
+        pop
+        duplicate
+        out_int
+        push 1
+      end
+    end
+  end
+
+  pop
+  pop
+
+  push 10
+  out_char
+
+  push 1
+  substract
+
+  duplicate
+  not
+end
+
