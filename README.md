@@ -16,8 +16,8 @@ next steps of Dyet.)
 Usage
 -----
 
-Running `./dyet check/test.dyp` will create an 'out.ppm' file which is the
-corresponding Piet code.
+Running `./dyet check/test.dyp > out.ppm` will create an 'out.ppm' file which
+is the corresponding Piet code. Run it with npiet and behold!
 
 
 
@@ -39,14 +39,17 @@ Are accepted:
   * **mod**,
   * **not**,
   * **greater**,
-  * **pointer**,
-  * **switch**,
   * **duplicate**,
   * **roll**,
   * **in_int**,
   * **in_char**,
   * **out_int**,
   * **out_char**
+
+Are also accepted:
+  * if [else] end
+  * while end
+
 
 
 Toolchain
