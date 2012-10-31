@@ -5,7 +5,7 @@ Pseudo-code to Piet source-code transformation.
 For lulz and gloriez.
 
 This is a 0.6 version: it generates nice "squared" images and handle `if`,
-`else`, `end` and `while`. It also support a basic "print" operation. I have
+`else`, `end` and `while`. It also support a basic `print` operation. I have
 plans to make it even better, but any help will be appreciated. :)
 
 (See the wiki for monologues and ascii-art about how I plan to implement the
@@ -51,7 +51,7 @@ Are accepted:
 Are also accepted:
   * **if ... [else ...] end**
   * **while ... end**
-  * **print ...*
+  * **print ...**
 
 
 
