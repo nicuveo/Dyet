@@ -56,12 +56,29 @@ def main(args):
             elif command == "end":
                 close(scope.pop())
                 container_scope.pop()
+            elif command == "exit":
+                scope[-1].blocks.append(EndBlock())
+            elif command == "print":
+                bl = BlockList()
+                ow = WhileBlock()
+                bl.blocks.append(LeafBlock(Commands.PUSH))
+                bl.blocks.append(LeafBlock(Commands.NOT))
+                for char in [char for char in reversed(" ".join(argv[1:]).replace("\\n", "\n").replace("\ ", " "))]:
+                    bl.blocks.append(LeafBlock(Commands.PUSH, ord(char)))
+                bl.blocks.append(ow)
+                ow.while_block.blocks.append(LeafBlock(Commands.OUT_CHAR))
+                ow.while_block.blocks.append(NoopBlock())
+                bl.blocks.append(LeafBlock(Commands.POP))
+                scope[-1].blocks.append(bl)
             elif command in Commands.map.keys() and not command in [Commands.POINTER, Commands.SWITCH, Commands.NOOP]:
                 cmd = Commands.map[command]
                 if len(argv) > 1:
                     scope[-1].blocks.append(LeafBlock(cmd, int(argv[1])))
                 else:
                     scope[-1].blocks.append(LeafBlock(cmd))
+            else:
+                print("Unknown token '" + command + "'")
+                exit(1)
 
         assert(len(scope) == 1)
         resulting_prog.blocks.append(EndBlock())
