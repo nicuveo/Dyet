@@ -4,9 +4,9 @@ Dyet
 Pseudo-code to Piet source-code transformation.
 For lulz and gloriez.
 
-This is a 0.5 version: it generates nice squared images and handle `if`,
-`else`, `end` and `while`. I have plans to make it better, but any help will be
-appreciated. :)
+This is a 0.6 version: it generates nice "squared" images and handle `if`,
+`else`, `end` and `while`. It also support a basic "print" operation. I have
+plans to make it even better, but any help will be appreciated. :)
 
 (See the wiki for monologues and ascii-art about how I plan to implement the
 next steps of Dyet.)
@@ -18,6 +18,8 @@ Usage
 
 Running `./dyet check/test.dyp > out.ppm` will create an 'out.ppm' file which
 is the corresponding Piet code. Run it with npiet and behold!
+
+Alternatively, you can run `./run check/test.dyp`, which'll do the exact same thing.
 
 
 
@@ -47,8 +49,9 @@ Are accepted:
   * **out_char**
 
 Are also accepted:
-  * if [else] end
-  * while end
+  * **if ... [else ...] end**
+  * **while ... end**
+  * **print ...*
 
 
 
