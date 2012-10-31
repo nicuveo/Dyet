@@ -198,7 +198,7 @@ class WhileBlock(Block):
 
     def minimum_size(self):
         wbs = self.while_block.minimum_size()
-        return (4 + wbs[1], 4 + wbs[0])
+        return (4 + max(wbs[1], 2), 4 + wbs[0])
 
     def colorize(self, color):
         self.color = color
@@ -208,6 +208,7 @@ class WhileBlock(Block):
     def render(self, width, height):
         res = Image(width, height, Colors.RGB_B)
         wbs = self.while_block.minimum_size()
+        wbh = max(wbs[1], 2)
         pix_color = self.color
         res.pixel_set(0, 0, pix_color.rgb())
         res.pixel_set(1, 1, pix_color.rgb())
@@ -218,11 +219,13 @@ class WhileBlock(Block):
         res.pixel_set(1, 0, pix_color.rgb())
         pix_color = color.command_next(pix_color, Commands.NOT)
         res.pixel_set(2, 0, pix_color.rgb())
+        pix_color = color.command_next(pix_color, Commands.NOT)
+        res.pixel_set(3, 0, pix_color.rgb())
         pix_color = color.command_next(pix_color, Commands.POINTER)
-        image_builder.draw_rect(res, (3, 0), (width - 2, 0), pix_color.rgb())
+        image_builder.draw_rect(res, (4, 0), (width - 2, 0), pix_color.rgb())
         image_builder.draw_rect(res, (3, 1), (width - 2,  1), Colors.RGB_W)
         image_builder.draw_rect(res, (1, 2), (1, height - 2), Colors.RGB_W)
         image_builder.draw_rect(res, (3, wbs[0] + 2), (width - 2, height - 2), Colors.RGB_W)
         image_builder.draw_rect(res, (3, height - 1), (width - 2, height - 1), pix_color.rgb())
-        image_builder.paste_sub_image(res, self.while_block.render(wbs[0], wbs[1]), 3, 2, image_builder.PLUS_90)
+        image_builder.paste_sub_image(res, self.while_block.render(wbs[0], wbh), 3, 2, image_builder.PLUS_90)
         return res
