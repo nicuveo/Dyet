@@ -1,0 +1,50 @@
+push
+push
+while
+  pop
+  pop
+  print Prime factors decomposition.\n
+  print Enter desired number
+  in_int
+  duplicate
+  push 1 ; not ; greater ; not
+end
+pop
+
+duplicate
+out_int ; print \ = 1
+
+push 2
+
+push 2 ; push 1; roll
+duplicate ; push 1 ; substract
+while
+  pop
+  duplicate
+  push 3 ; push 2 ; roll
+  duplicate
+  duplicate
+  push 5 ; push 2 ; roll
+  mod
+
+  if
+    pop
+    push 3 ; push 1 ; roll
+    pop
+    push 1
+    add
+    push 2 ; push 1 ; roll
+  else
+    pop
+    push 3 ; push 2 ; roll
+    duplicate ; push 32 ; push 42 ; push 32
+    out_char ; out_char ; out_char ; out_int
+    divide
+  end
+
+  duplicate ; push 1 ; substract
+end
+
+push 10 ; out_char
+
+

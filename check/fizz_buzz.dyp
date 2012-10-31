@@ -1,9 +1,6 @@
 push 42
 
-duplicate
-not
 while
-  pop
   duplicate
   push 43
   push 2
@@ -37,15 +34,8 @@ while
   substract
   not
   if
-    push 122
-    duplicate
-    push 105
-    push 70
-    out_char
-    out_char
-    out_char
-    out_char
     pop
+    print Fizz!
   else
     pop
     duplicate
@@ -53,15 +43,8 @@ while
     substract
     not
     if
-      push 122
-      duplicate
-      push 117
-      push 66
-      out_char
-      out_char
-      out_char
-      out_char
       pop
+      print Buzz!
     else
       pop
       duplicate
@@ -69,23 +52,8 @@ while
       substract
       not
       if
-        push 122
-        duplicate
-        push 117
-        push 66
-        push 122
-        duplicate
-        push 105
-        push 70
-        out_char
-        out_char
-        out_char
-        out_char
-        out_char
-        out_char
-        out_char
-        out_char
         pop
+        print FizzBuzz!
       else
         pop
         pop
@@ -104,8 +72,4 @@ while
 
   push 1
   substract
-
-  duplicate
-  not
 end
-

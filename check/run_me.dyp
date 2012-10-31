@@ -1,0 +1,48 @@
+print We're no strangers to love\n
+print You know the rules and so do I\n
+print A full commitment's what I'm thinking of\n
+print You wouldn't get this from any other guy\n
+print I just wanna tell you how I'm feeling\n
+print Gotta make you understand\n
+push 10; out_char
+print Never gonna give you up,\n
+print Never gonna let you down\n
+print Never gonna run around and desert you\n
+print Never gonna make you cry,\n
+print Never gonna say goodbye\n
+print Never gonna tell a lie and hurt you\n
+push 10; out_char
+print We've known each other for so long\n
+print Your heart's been aching but you're too shy to say it\n
+print Inside we both know what's been going on\n
+print We know the game and we're gonna play it\n
+print And if you ask me how I'm feeling\n
+print Don't tell me you're too blind to see\n
+push 10; out_char
+print Never gonna give you up,\n
+print Never gonna let you down\n
+print Never gonna run around and desert you\n
+print Never gonna make you cry,\n
+print Never gonna say goodbye\n
+print Never gonna tell a lie and hurt you\n
+push 10; out_char
+print (Ooh give you up)\n
+print (Ooh give you up)\n
+print (Ooh) never gonna give, never gonna give\n
+print (give you up)\n
+print (Ooh) never gonna give, never gonna give\n
+print (give you up)\n
+push 10; out_char
+print We've known each other for so long\n
+print Your heart's been aching but you're too shy to say it\n
+print Inside we both know what's been going on\n
+print We know the game and we're gonna play it\n
+print And if you ask me how I'm feeling\n
+print Don't tell me you're too blind to see\n
+push 10; out_char
+print Never gonna give you up,\n
+print Never gonna let you down\n
+print Never gonna run around and desert you\n
+print Never gonna make you cry,\n
+print Never gonna say goodbye\n
+print Never gonna tell a lie and hurt you\n
