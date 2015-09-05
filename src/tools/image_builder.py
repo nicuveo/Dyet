@@ -4,13 +4,15 @@
 
 
 
-########## Imports ##########
+##########################################
+# Imports
 
-from tools.image import Image
+from image import Image
 
 
 
-########## Declarations ##########
+##########################################
+# Declarations
 
 SAME_DIRECTION = 0
 PLUS_90        = 1
@@ -40,3 +42,12 @@ def draw_rect(image, p0, p1, color):
     for row in range(p0[1], p1[1] + 1):
         for col in range(p0[0], p1[0] + 1):
             image.pixel_set(col, row, color)
+
+
+
+##########################################
+# Unit tests
+
+if __name__ == "__main__":
+    import unittest
+    unittest.main(verbosity = 0)

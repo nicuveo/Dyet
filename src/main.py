@@ -4,11 +4,12 @@
 
 
 
-########## Imports ##########
+##########################################
+# Imports
 
 import sys
 import parser
-import color
+import colors
 
 from tools.graph import Graph
 from tools.image import Image
@@ -18,7 +19,8 @@ from block import *
 
 
 
-########## Declarations ##########
+##########################################
+# Declarations
 
 def render(block_list):
     size = block_list.minimum_size()
@@ -87,7 +89,8 @@ def main(args):
 
 
 
-########## Main ##########
+##########################################
+# Main
 
 if __name__ == "__main__":
     main(sys.argv)

@@ -5,40 +5,42 @@
 
 
 
-########## Declarations ##########
+##########################################
+# Declarations
 
 class Graph:
     def __init__(self):
-        self.__adjacency_maps = {}
+        self._adjacency_maps = {}
 
     def nodes(self):
-        return self.__adjacency_maps.keys()
+        return self._adjacency_maps.keys()
     def edges(self):
-        for (source, adjacency_map) in self.__adjacency_maps.items():
+        for (source, adjacency_map) in self._adjacency_maps.items():
             for (target, edge) in adjacency_map.items():
                 yield (source, target, edge)
 
     def edge(self, source, target):
-        return self.__adjacency_maps[source][target]
+        return self._adjacency_maps[source][target]
 
     def preds(self, node):
         return [source for (source, target, _) in self.edges() if target == node]
     def in_edges(self, node):
         return [edge for edge in self.edges() if edge[1] == node]
     def succs(self, node):
-        return self.__adjacency_maps[node].keys()
+        return self._adjacency_maps[node].keys()
     def out_edges(self, node):
         return [edge for edge in self.edges() if edge[0] == node]
 
     def add_node(self, node):
-        if not node in self.__adjacency_maps:
-            self.__adjacency_maps[node] = {}
+        if not node in self._adjacency_maps:
+            self._adjacency_maps[node] = {}
     def add_edge(self, source, target, edge):
-        self.__adjacency_maps[source][target] = edge
+        self._adjacency_maps[source][target] = edge
 
 
 
-########## Unit tests ##########
+##########################################
+# Unit tests
 
 if __name__ == "__main__":
     import unittest

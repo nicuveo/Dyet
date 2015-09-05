@@ -48,7 +48,7 @@ while
     else
       pop
       duplicate
-      push 8
+      push 15
       substract
       not
       if
